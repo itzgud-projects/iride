@@ -1,4 +1,4 @@
-name := """iride-web"""
+name := "iride-web"
 
 version := "1.0-SNAPSHOT"
 
