@@ -4,6 +4,13 @@
 
 # Home page
 GET     /                           controllers.Application.index()
+GET		/allarea					@com.itzgud.iride.controllers.AreaController.getAllArea()
+GET		/area/:areaId				@com.itzgud.iride.controllers.AreaController.getArea(areaId: Int)
+GET		/areabylocation/:locationId	@com.itzgud.iride.controllers.AreaController.getAreabyLocation(locationId: Int)
+
+GET		/alllocations				@com.itzgud.iride.controllers.LocationController.getAllLocations()
+GET		/location/:locationId		@com.itzgud.iride.controllers.LocationController.getLocation(locationId: Int)
+
 GET     /iride                     assets.Assets.at(file="index.html")
 # Map static resources from the /public folder to the /assets URL path
 GET     /*file             	controllers.Assets.at(path="/public", file)
