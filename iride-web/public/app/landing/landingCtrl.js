@@ -15,7 +15,7 @@ mainApp.controller('landingCtrl', function ($scope, $rootScope, $log, $state, $s
     $scope.getAreas = function(){
 	    var serviceURL = "/allarea";
 	    var errorFn = function(data){				
-			$scope.loginError = "Invalid username/password combination";
+			$scope.error = "No Data Found";
 		}
 		var successFn = function(data) {			
 			$scope.allarea = data;

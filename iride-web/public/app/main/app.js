@@ -18,13 +18,18 @@ mainApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider ) {
 	
     $stateProvider
         .state('home', {
-            url: '/',
-            templateUrl: 'app/login/login.tpl.html',
-            controller: 'loginCtrl'
+            url: '/home',
+            templateUrl: 'app/homepage/homepage.tpl.html',
+            controller: 'homepageCtrl'
         })
         .state('login', {
             url: '/login',
             templateUrl: 'app/login/login.tpl.html',
+            controller: 'loginCtrl'
+        })
+        .state('register', {
+            url: '/register',
+            templateUrl: 'app/login/register.tpl.html',
             controller: 'loginCtrl'
         })
         .state('landing', {
@@ -32,34 +37,15 @@ mainApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider ) {
             templateUrl: 'app/landing/landing.tpl.html',
             controller: 'landingCtrl'
         })
-    	/*.state('dashboard', {
-            url: '/dashboard',
-            templateUrl: 'app/dashboard/dashboard.tpl.html',
-            controller: 'dashboardCtrl'
-        })
-        .state('enrollment', {
-            url: '/enrollment',
-            templateUrl: 'app/enrollment/enrollment.tpl.html',
-            controller: 'enrollmentCtrl'
-        })
-        .state('insured', {
-            url: '/insured',
-            templateUrl: 'app/enrollment/insured.tpl.html',
-            controller: 'insuredCtrl'
-        })
-        .state('owner', {
-            url: '/owner',
-            templateUrl: 'app/enrollment/owner.tpl.html',
-            controller: 'ownerCtrl'
-        })*/;
+    	;
 
         //Re-directs
-        $urlRouterProvider.otherwise('/login');
+        $urlRouterProvider.otherwise('/home');
 
 });
 mainApp.run(function ($log, $rootScope, $state, $urlRouter,$location) { // Inject Service to load data
     $log.debug("mainApp.run");
-    $state.transitionTo('login');
+    $state.transitionTo('home');
     
    // $rootScope.$on('$stateChangeStart', ); -- Pass Service.values to load some data
 

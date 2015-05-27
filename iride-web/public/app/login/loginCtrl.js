@@ -5,7 +5,7 @@ mainApp.controller('loginCtrl',
 
     $log.info('+ loginCtrl()');
     $scope.test="ANGULAR TEST";
-
+    $scope.newui= true;
 
     $scope.login = function ( username, password ) {
 		// Simulate post request to server for authentication //
@@ -58,6 +58,10 @@ mainApp.controller('loginCtrl',
   	};
 	
   	$scope.register = function(){
+  		$state.go("register");
+  	};
+  	
+  	$scope.gotoLogin = function(){
   		$state.go("login");
   	};
 
