@@ -11,6 +11,8 @@ GET		/areabylocation/:locationId	@com.itzgud.iride.controllers.AreaController.ge
 GET		/alllocations				@com.itzgud.iride.controllers.LocationController.getAllLocations()
 GET		/location/:locationId		@com.itzgud.iride.controllers.LocationController.getLocation(locationId: Int)
 
+GET		/allcustomers				@com.itzgud.iride.controllers.CustomerController.getAllCustomers()
+
 GET     /iride                      assets.Assets.at(file="index.html")
 # Map static resources from the /public folder to the /assets URL path
 GET     /*file             			controllers.Assets.at(path="/public", file)

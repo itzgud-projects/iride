@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import com.google.common.collect.Sets;
 import com.itzgud.iride.entities.Area;
 import com.itzgud.iride.model.EntityDao;
+
 @Component
 public class AreaDao extends EntityDao<Area> {
 
@@ -41,30 +42,28 @@ public class AreaDao extends EntityDao<Area> {
 				.getResultList());
 
 	}
-	
+
 	public void removeAllByLocationId(int locationId) {
 
-        em().createQuery("delete from Area a1 WHERE a1.id.locationId = :locationId")
+		em().createQuery(
+				"delete from Area a1 WHERE a1.id.locationId = :locationId")
 
-                        .setParameter("locationId", locationId).executeUpdate();
+		.setParameter("locationId", locationId).executeUpdate();
 
-    }
-	
+	}
+
 	public Boolean locationHasAreaData(Integer locationId) {
 
-        List<Area> resultList =  session().createCriteria(Area.class, "area")
+		List<Area> resultList = session().createCriteria(Area.class, "area")
 
-                        .add(Restrictions.eq("area.id.locationId", locationId))
+		.add(Restrictions.eq("area.id.locationId", locationId))
 
-                        .setMaxResults(1)
+		.setMaxResults(1)
 
-                        .list();
+		.list();
 
- 
+		return !resultList.isEmpty();
 
-        return !resultList.isEmpty();
-
-    }
-
+	}
 
 }

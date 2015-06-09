@@ -21,7 +21,8 @@ publishArtifact in (Compile, packageSrc) := false
 resolvers ++= Seq(
 	"Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/",
 	"Alfresco Maven Repository" at "https://maven.alfresco.com/nexus/content/groups/public/",
-	"Local Maven Repository" at "file:///" + Path.userHome.absolutePath + "/.m2/repository"
+	"Local Maven Repository" at "file:///" + Path.userHome.absolutePath + "/.m2/repository",
+	"Maven repository" at "http://morphia.googlecode.com/svn/mavenrepo/"
 )
 
 libraryDependencies ++= Seq(
@@ -59,7 +60,10 @@ libraryDependencies ++= Seq(
     "org.springframework" % "spring-test" % "4.1.1.RELEASE",
     "org.springframework" % "spring-tx" % "4.1.1.RELEASE",
     "xml-apis" % "xml-apis" % "1.4.01",
-    "mysql" % "mysql-connector-java" % "5.1.25"
+    "mysql" % "mysql-connector-java" % "5.1.25",
+    "com.google.code.morphia" % "morphia" % "0.99",
+  	"org.mongodb" % "mongo-java-driver" % "2.7.3",
+	"de.flapdoodle.embed" % "de.flapdoodle.embed.mongo" % "1.36" % "test"
 )
 
 //publishTo := Some(Resolver.file("file", new File(Path.userHome.absolutePath + "/.m2/repository")))

@@ -2,10 +2,14 @@ package com.itzgud.iride;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.google.code.morphia.Morphia;
+import com.itzgud.iride.framework.MorphiaObject;
 import com.itzgud.iride.framework.error.ErrorManager;
+import com.mongodb.Mongo;
 
 import play.Application;
 import play.GlobalSettings;
+import play.Logger;
 import play.Play;
 import play.api.mvc.EssentialFilter;
 import play.filters.gzip.GzipFilter;
@@ -14,6 +18,7 @@ import play.mvc.Http;
 import play.mvc.Result;
 
 import java.io.File;
+import java.net.UnknownHostException;
 
 /**
  * 
@@ -66,27 +71,15 @@ public class Global extends GlobalSettings {
 		// entirely available to this application context.
 
 		context.register(com.itzgud.iride.Config.class);
-
 		context.scan(
-
-		
-
 				"com.itzgud.iride.dao",
-
 				"com.itzgud.iride.dto",
-
 				"com.itzgud.iride.model",
-
 				"com.itzgud.iride.framework",
-
 				"com.itzgud.iride.services",
-
 				"com.itzgud.iride.util",
-
 				"com.itzgud.iride.controllers"
-
 				);
-
 		context.refresh();
 
 		// This will construct the beans and call any construction lifecycle
@@ -94,6 +87,10 @@ public class Global extends GlobalSettings {
 
 		context.start();
 
+		//Initiate MongoDB
+		
+		initiateMongoDB();
+		
 		// Start the Grunt build tool
 
 		/*if (Play.isProd()) {
@@ -106,6 +103,21 @@ public class Global extends GlobalSettings {
 
 		}*/
 
+	}
+	
+	private void initiateMongoDB(){
+		 Logger.debug("** onStart initiateMongoDB**"); 
+		    try {
+		      MorphiaObject.mongo = new Mongo("127.0.0.1", 27017);
+		    } catch (UnknownHostException e) {
+		      e.printStackTrace();
+		    }
+		    MorphiaObject.morphia = new Morphia();
+		    MorphiaObject.datastore = MorphiaObject.morphia.createDatastore(MorphiaObject.mongo, "iridemongodb");
+		    MorphiaObject.datastore.ensureIndexes();   
+		    MorphiaObject.datastore.ensureCaps();  
+
+		    Logger.debug("** Morphia datastore: " + MorphiaObject.datastore.getDB());
 	}
 
 	/**

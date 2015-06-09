@@ -23,7 +23,5 @@ public class LocationDao extends EntityDao<Location> {
 		return em().find(Location.class, id);
 
 	}
-	
-	
 
 }
